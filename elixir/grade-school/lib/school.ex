@@ -10,17 +10,7 @@ defmodule School do
   """
   @spec add(map, String.t(), integer) :: map
   def add(db, name, grade) do
-    cond do
-      Map.has_key?(db, grade) ->
-        add_student(db, name, grade)
-
-      true ->
-        Map.put(db, grade, [name])
-    end
-  end
-
-  defp add_student(db, name, grade) do
-    [name | grade(db, grade)] |> (&Map.put(db, grade, &1)).()
+    Map.put(db, grade, [name | grade(db, grade)])
   end
 
   @doc """
