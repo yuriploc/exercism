@@ -6,29 +6,19 @@ defmodule WordCount do
   """
   @spec count(String.t()) :: map
   def count(sentence) do
-    capture_words(sentence)
+    sentence
+    |> split
+    |> Enum.filter(fn w -> String.length(w) > 0 end)
+    |> count_words
   end
 
-  defp capture_words(words) do
-    words
-    |> String.downcase()
-    |> (&Regex.split(~r{[\s_]}, &1)).()
-    |> Enum.map(&clean_word/1)
-    |> Enum.filter(fn word -> word != nil end)
-    |> Enum.flat_map(fn word -> word end)
-    |> Enum.reduce(%{}, fn x, acc ->
-      with {:ok, value} <- Map.fetch(acc, x),
-           true <- is_number(value) do
-        {_, m} = Map.get_and_update(acc, x, fn v -> {v, v + 1} end)
-        m
-      else
-        :error -> Map.put(acc, x, 1)
-      end
-    end)
+  defp split(sentence) do
+    sentence
+    |> String.split(~r/[^[:alnum:]-]/xiu, trim: true)
   end
 
-  # Removes unwanted symbols from the words
-  defp clean_word(word) do
-    Regex.run(~r/^[[:alnum:]]+[-]?[[:alpha:]]*/iu, word, trim: true)
+  defp count_words(splitted_sentence) do
+    splitted_sentence
+    |> Enum.frequencies_by(&String.downcase/1)
   end
 end
