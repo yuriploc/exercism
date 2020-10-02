@@ -9,4 +9,6 @@ Pig Latin: [local](./elixir/pig-latin/lib/pig_latin.ex) - [on exercism](https://
 
 Grade School: [local](./elixir/grade-school/lib/school.ex) - [on exercism](https://exercism.io/tracks/elixir/exercises/grade-school/solutions/7da01fd17a5648979aa3dbd2f8863072)
 
-Word Count: [local](elixir/word-count/lib/word_count.ex) - [on exercism](https://exercism.io/tracks/elixir/exercises/word-count/solutions/cfa4eea211fe4661bf09e8142f45f797)
+Word Count: [local](./elixir/word-count/lib/word_count.ex) - [on exercism](https://exercism.io/tracks/elixir/exercises/word-count/solutions/cfa4eea211fe4661bf09e8142f45f797)
+
+Resistor Color: [local](./elixir/resistor-color/lib/resistor_color.ex) - [on exercism](https://exercism.io/tracks/elixir/exercises/resistor-color/solutions/5d60b3af7f604d5cbdd338331b52fc80)
