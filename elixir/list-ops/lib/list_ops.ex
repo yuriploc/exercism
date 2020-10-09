@@ -6,9 +6,7 @@ defmodule ListOps do
   # `++`, `--`, `hd`, `tl`, `in`, and `length`.
 
   @spec count(list) :: non_neg_integer
-  def count(l), do: count(0, l)
-  defp count(counter, []), do: counter
-  defp count(counter, [_h | t]), do: count(counter + 1, t)
+  def count(l), do: reduce(l, 0, fn _x, acc -> acc + 1 end)
 
   @spec reverse(list) :: list
   def reverse(l), do: reverse(l, [])
@@ -17,28 +15,12 @@ defmodule ListOps do
 
   @spec map(list, (any -> any)) :: list
   def map(l, f) do
-    map(l, f, [])
+    for element <- l, do: f.(element)
   end
-
-  defp map([], _f, acc), do: reverse(acc)
-  defp map([h | t], f, n), do: map(t, f, [f.(h) | n])
 
   @spec filter(list, (any -> as_boolean(term))) :: list
   def filter(l, f) do
-    filter(l, f, [])
-    |> reverse()
-  end
-
-  def filter([], _f, acc) do
-    acc
-  end
-
-  def filter([h | t], f, acc) do
-    if f.(h) do
-      filter(t, f, [h | acc])
-    else
-      filter(t, f, acc)
-    end
+    for n <- l, f.(n), do: n
   end
 
   @type acc :: any
