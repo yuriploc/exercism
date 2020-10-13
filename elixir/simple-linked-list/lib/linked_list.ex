@@ -92,17 +92,6 @@ defmodule LinkedList do
   """
   @spec reverse(t) :: t
   def reverse(list) do
-    reverse(list, new())
-  end
-
-  defp reverse(list, acc) do
-    case empty?(list) do
-      true ->
-        acc
-
-      _ ->
-        {:ok, last, rest} = pop(list)
-        push(acc, last) |> (&reverse(rest, &1)).()
-    end
+    to_list(list) |> Enum.reverse() |> from_list()
   end
 end
