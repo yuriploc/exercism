@@ -1,5 +1,5 @@
 defmodule LinkedList do
-  @opaque t :: tuple()
+  @opaque t :: map()
   @empty_list %{value: nil, next: nil}
   @empty_list_error {:error, :empty_list}
 
